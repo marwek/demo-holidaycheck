@@ -3,7 +3,7 @@ import os
 
 capabilities = {
     'platformName': 'Android',
-    'platformVersion': '9.0',
+    'platformVersion': '11',
     'deviceName': 'emulator-5554',
     'automationName': 'UIAutomator2',
     'browserName': 'Chrome'

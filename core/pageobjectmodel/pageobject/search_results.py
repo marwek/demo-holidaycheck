@@ -1,5 +1,7 @@
+from selenium.common.exceptions import TimeoutException
 from core.pageobjectmodel.locators.search_results_locators import SearchResultsLocators
 from core.pageobjectmodel.pageobject.base_page import BasePage
+from core.pageobjectmodel.utils.wait import WaitForElement
 
 
 class SearchResults(BasePage):
@@ -15,4 +17,8 @@ class SearchResults(BasePage):
 
     def get_results_list(self):
         """Return all results from search list"""
-        return self.driver.find_elements(SearchResultsLocators.RESULTS_LIST)
+        try:
+            WaitForElement.wait(self.driver, SearchResultsLocators.LAST_RESULT)
+            return self.get_all_elements(SearchResultsLocators.RESULTS_LIST_ELEMENT)
+        except TimeoutException:
+            print('Not able to find results list')

@@ -1,5 +1,6 @@
-from appium.webdriver.common.touch_action import TouchAction
 from core.pageobjectmodel.utils.wait import WaitForElement
+from selenium.webdriver.common.keys import Keys
+
 
 
 class BasePage:
@@ -14,6 +15,7 @@ class BasePage:
         element = self.driver.find_element(*locator)
         element.clear()
         element.send_keys(value)
+        element.send_keys(Keys.ENTER)
 
     def __get__(self, locator):
         """Gets the text of the specified object"""
@@ -32,3 +34,15 @@ class BasePage:
         WaitForElement.wait(self.driver, locator)
         element = self.driver.find_elements(*locator)[pos]
         element.click()
+
+    def switch_to_frame(self, locator):
+        WaitForElement.wait(self.driver, locator)
+        frame = self.driver.find_element(*locator)
+        self.driver.switch_to.frame(frame)
+
+    def switch_to_default(self):
+        self.driver.switch_to.default_content()
+
+    def get_all_elements(self, locator):
+        WaitForElement.wait(self.driver, locator)
+        return  self.driver.find_elements(*locator)
