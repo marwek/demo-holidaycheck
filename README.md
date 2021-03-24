@@ -21,6 +21,9 @@ capabilities = {
 }
 ```
 
+## Launch test case
+Execute `pytest` command in main directory.
+
 ## Use case
 1. Navigate to homepage of http://www.holidaycheck.de
 2. Click search
